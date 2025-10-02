@@ -14,6 +14,10 @@
 
 int main(int ac, char **av)
 {
-	ScalarConverter SC;
+	std::cout << nan("k") << std::endl;
+	if (isnan(4545))
+		std::cout << "ce n'est pas une valeur numerique" << std::endl;
+
 	return (0);
 }
+

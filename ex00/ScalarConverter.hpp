@@ -15,12 +15,13 @@
 # include <string>
 # include <iostream>
 # include <ostream>
+# include <math.h>
+# include <sstream>
 
 class ScalarConverter
 {
 	private:
 	public:
-		static void convert(std::string literal);
 
 };
 
