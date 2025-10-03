@@ -14,10 +14,11 @@
 
 int main(int ac, char **av)
 {
-	std::cout << nan("k") << std::endl;
-	if (isnan(4545))
-		std::cout << "ce n'est pas une valeur numerique" << std::endl;
-
+	ScalarConverter::convert("67");
+	// ScalarConverter::convert("n");	
+	// ScalarConverter::convert("nan");
+	// ScalarConverter::convert("-inff");
+	// ScalarConverter::convert("x");	
 	return (0);
 }
 

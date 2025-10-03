@@ -17,13 +17,15 @@
 # include <ostream>
 # include <math.h>
 # include <sstream>
+# include <exception>
+# include <stdlib.h>
 
 class ScalarConverter
 {
 	private:
 	public:
+		static void convert(std::string literal);
 
 };
-
 
 #endif
