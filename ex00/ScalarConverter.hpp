@@ -19,12 +19,13 @@
 # include <sstream>
 # include <exception>
 # include <stdlib.h>
+# include <climits>
 
 class ScalarConverter
 {
 	private:
 	public:
-		static void convert(std::string literal);
+		static void convert(char *literal);
 
 };
 

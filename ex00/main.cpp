@@ -14,11 +14,9 @@
 
 int main(int ac, char **av)
 {
-	ScalarConverter::convert("67");
-	// ScalarConverter::convert("n");	
-	// ScalarConverter::convert("nan");
-	// ScalarConverter::convert("-inff");
-	// ScalarConverter::convert("x");	
+
+	ScalarConverter a;
+	ScalarConverter::convert(av[1]);	
 	return (0);
 }
 
