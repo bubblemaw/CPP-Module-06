@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 22:03:19 by maw               #+#    #+#             */
-/*   Updated: 2025/10/01 23:18:29 by maw              ###   ########.fr       */
+/*   Updated: 2025/10/10 17:36:53 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+ScalarConverter::ScalarConverter()
+{
+	std::cout << "Default ScalarConverter Constructor" <<  std::endl;
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &obj)
+{
+	std::cout << "Default ScalarConverter Copy Constructor" <<  std::endl;
+	*this = obj;
+}
+
+ScalarConverter::~ScalarConverter()
+{
+	std::cout << "Default ScalarConverter Destructor" <<  std::endl;
+}
+
+const ScalarConverter& ScalarConverter::operator=(const ScalarConverter &obj)
+{
+	std::cout << "Default ScalarConverter Assignement operator" <<  std::endl;
+	return *this;
+}
 
 void ScalarConverter::float_check(char *str, float *_float, int *valid_float)
 {    
@@ -28,13 +50,14 @@ void ScalarConverter::float_check(char *str, float *_float, int *valid_float)
 		*valid_float = impossible;
 		return ;
 	}
-	*valid_float = VALID;	
+	*valid_float = VALID;
 }
 
 void ScalarConverter::int_check(char *str, int *_int, int *valid_int)
 {    
 	errno = 0;
 	char *pEnd;
+	
 	*_int = strtol(str, &pEnd, 0);
 	if ( pEnd == str || *pEnd != '\0')
 	{    
@@ -42,7 +65,7 @@ void ScalarConverter::int_check(char *str, int *_int, int *valid_int)
 		*valid_int = impossible;
 		return ;              
 	}
-	else if ((*_int == LONG_MIN || *_int == LONG_MAX) && errno == ERANGE)
+	else if ((*_int < INT_MIN || *_int > INT_MAX) && errno == ERANGE)
 	{
 		*valid_int = impossible;
 		return ;        
@@ -96,87 +119,115 @@ void ScalarConverter::char_check(char *str, char *_char, int *valid_char)
 
 void ScalarConverter::from_char_display(int **valid_tab, char *_char)
 {
-	std::cout <<  "char: ";
-	if (*valid_tab[1] == impossible)
-		std::cout << "impossible";
-	else if (*valid_tab[1] == nondisp)
-		std::cout << "Non displayable";		
+	double d = static_cast<double>(*_char);
+	float f = static_cast<float>(*_char);
+	int i = static_cast<int>(*_char);
+	std::cout <<  "char: ";	
+	if (isprint(*_char))
+		std::cout << *_char << std::endl;
+	else
+		std::cout << "Non displayable" << std::endl;		
 	std::cout <<  "int: ";
-	if (*valid_tab[0] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<int>(*_char) << std::endl;
+	if (i > INT_MAX || i < INT_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << i << std::endl;
 	std::cout <<  "float: ";
-	if (*valid_tab[2] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<float>(*_char) << std::endl;
+	if (f > FLT_MAX || f < FLT_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << f << "f" << std::endl;
 	std::cout <<  "double: ";
-	if (*valid_tab[3] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<double>(*_char) << std::endl;             
+	if (d >  DBL_MAX || d < DBL_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << d << std::endl;           
 }
 
 void ScalarConverter::from_double_display(int **valid_tab, double *_double)
 {
-	std::cout <<  "char: ";
-	if (*valid_tab[1] == impossible)
-		std::cout << "impossible";
-	else if (*valid_tab[1] == nondisp)
-		std::cout << "Non displayable";
-	std::cout << static_cast<char>(*_double) << std::endl;		
+	char c = static_cast<char>(*_double);
+	float f = static_cast<float>(*_double);
+	int i = static_cast<int>(*_double);
+	std::cout <<  "char: ";	
+	if (isprint(c))
+		std::cout << c << std::endl;
+	else
+		std::cout << "Non displayable" << std::endl;		
 	std::cout <<  "int: ";
-	if (*valid_tab[0] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<int>(*_double) << std::endl;
+	if (i > INT_MAX || i < INT_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << i << std::endl;
 	std::cout <<  "float: ";
-	if (*valid_tab[2] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<float>(*_double) << std::endl;
+	if (f > FLT_MAX || f < FLT_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << f << "f" << std::endl;
 	std::cout <<  "double: ";
-	if (*valid_tab[3] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<double>(*_double) << std::endl;            
+	if (*_double >  DBL_MAX || *_double < DBL_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << *_double << std::endl;              
 }
 
 void ScalarConverter::from_float_display(int **valid_tab, float *_float)
 {
-	std::cout << std::fixed;
-	std::cout.precision(1);
-	std::cout <<  "char: ";
-	if (*valid_tab[1] == impossible)
-		std::cout << "impossible";	
-	else if (*valid_tab[1] == nondisp)
-		std::cout << "Non displayable";
-	std::cout << static_cast<char>(*_float) << std::endl;		
+	double d = static_cast<double>(*_float);
+	char c = static_cast<char>(*_float);
+	int i = static_cast<int>(*_float);
+	std::cout <<  "char: ";	
+	if (isprint(c))
+		std::cout << c << std::endl;
+	else
+		std::cout << "Non displayable" << std::endl;		
 	std::cout <<  "int: ";
-	if (*valid_tab[0] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<int>(*_float) << std::endl;
+	if (i > INT_MAX || i < INT_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << i << std::endl;
 	std::cout <<  "float: ";
-	if (*valid_tab[2] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<float>(*_float) << std::endl;
+	if (*_float ==  INFINITY)
+		std::cout << *_float << "f" << std::endl;	
+	else if (*_float > FLT_MAX || *_float < FLT_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << *_float << "f" << std::endl;
 	std::cout <<  "double: ";
-	if (*valid_tab[3] == impossible)
-		std::cout << "impossible";
-	std::cout << static_cast<double>(*_float) << std::endl;            
+	if (d >  DBL_MAX || d < DBL_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << d << std::endl;         
 }
 
 void ScalarConverter::from_int_display(int **valid_tab, int *_int)
 {
-	std::cout << std::fixed;
-	std::cout.precision(1);
-	char _c = static_cast<char>(*_int);
-	std::cout <<  "char: ";
-	if (!isprint(_c))
-		std::cout << "Non displayable" << std::endl;
-	else	
-		std::cout << _c << std::endl;		
+	std::cout << "par le int" <<  std::endl;
+	double d = static_cast<double>(*_int);
+	char c = static_cast<char>(*_int);
+	float f = static_cast<float>(*_int);
+	std::cout <<  "char: ";	
+	if (isprint(c))
+		std::cout << c << std::endl;
+	else
+		std::cout << "Non displayable" << std::endl;		
 	std::cout <<  "int: ";
-	std::cout << static_cast<int>(*_int) << std::endl;
+	if (*_int > INT_MAX || *_int < INT_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << *_int << std::endl;
 	std::cout <<  "float: ";
-	std::cout << static_cast<float>(*_int) << std::endl;
+	if (f ==  INFINITY)
+		std::cout << f << "f" << std::endl;	
+	else if (f > FLT_MAX || f < FLT_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << f << "f" << std::endl;
 	std::cout <<  "double: ";
-	std::cout << static_cast<double>(*_int) << std::endl;			          
+	if (d >  DBL_MAX || d < DBL_MIN)
+		std::cout << "impossible" << std::endl;
+	else 
+		std::cout << d << std::endl;			          
 }
 
 void ScalarConverter::convert(char *literal)

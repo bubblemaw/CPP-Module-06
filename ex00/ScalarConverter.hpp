@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:10:03 by maw               #+#    #+#             */
-/*   Updated: 2025/10/01 22:36:54 by maw              ###   ########.fr       */
+/*   Updated: 2025/10/10 17:29:44 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sstream>
 # include <exception>
 # include <stdlib.h>
+# include <float.h>
 # include <climits>
 
 # define impossible 0
@@ -37,6 +38,10 @@ class ScalarConverter
 		// static int  valid_float;
 		// static int  valid_double;		
 	public:
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter &obj);
+		~ScalarConverter();
+		const ScalarConverter& operator=(const ScalarConverter &obj);
 		static void convert(char *literal);
 		static void float_check(char *str, float *_float, int *valid_float);
 		static void int_check(char *str, int *_int, int *valid_int);
@@ -46,6 +51,7 @@ class ScalarConverter
 		static void from_double_display(int **valid_tab, double *_double);
 		static void from_float_display(int **valid_tab, float *_float);
 		static void from_char_display(int **valid_tab, char *_char);
+		virtual void tokoss() = 0;
 
 };
 
