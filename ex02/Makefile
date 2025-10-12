@@ -1,4 +1,4 @@
-NAME = convert
+NAME = identify
 
 SRCS = main.cpp \
 		Base.cpp \

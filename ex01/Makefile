@@ -1,4 +1,4 @@
-NAME = convert
+NAME = Seria
 
 SRCS = main.cpp \
 		Serializer.cpp \
