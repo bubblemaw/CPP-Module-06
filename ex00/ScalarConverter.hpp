@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:10:03 by maw               #+#    #+#             */
-/*   Updated: 2025/10/12 13:19:01 by maw              ###   ########.fr       */
+/*   Updated: 2025/10/14 14:36:57 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@
 
 class ScalarConverter
 {
-	private:	
-	public:
+	private:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &obj);
 		~ScalarConverter();
-		const ScalarConverter& operator=(const ScalarConverter &obj);
+		const ScalarConverter& operator=(const ScalarConverter &obj);				
+	public:
 		static void convert(char *literal);
 		static void float_check(char *str, float *_float, int *valid_float);
 		static void int_check(char *str, long int *_int, int *valid_int);
@@ -43,7 +43,6 @@ class ScalarConverter
 		static void from_double_display(double *_double);
 		static void from_float_display(float *_float);
 		static void from_char_display(char *_char);
-		virtual void tokoss() = 0;
 
 };
 

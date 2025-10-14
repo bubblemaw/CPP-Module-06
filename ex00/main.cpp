@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 22:01:38 by maw               #+#    #+#             */
-/*   Updated: 2025/10/14 11:59:24 by masase           ###   ########.fr       */
+/*   Updated: 2025/10/14 14:42:54 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int main(int ac, char **av)
 {
-	ScalarConverter::convert(av[1]);	
+	if (ac == 2)
+	{
+		ScalarConverter::convert(av[1]);
+	}
 	return (0);
 }

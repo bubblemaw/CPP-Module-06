@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:11:34 by maw               #+#    #+#             */
-/*   Updated: 2025/10/10 14:37:37 by masase           ###   ########.fr       */
+/*   Updated: 2025/10/14 14:48:31 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,24 @@ void identify(Base& p)
 		A &a = dynamic_cast<A&>(p);
 		std::cout << "Type: A" << std::endl;		
 	}
-	catch (std::bad_cast)
+	catch (...)
 	{
-	
 	}
 	try
 	{
 		B &b = dynamic_cast<B&>(p);
 		std::cout << "Type: B" << std::endl;		
 	}
-	catch (std::bad_cast)
+	catch (...)
 	{
-				
 	}
 	try
 	{
 		C &c = dynamic_cast<C&>(p);
 		std::cout << "Type: C" << std::endl;		
 	}
-	catch (std::bad_cast)
+	catch (...)
 	{
-		
 	}		
 }
 
