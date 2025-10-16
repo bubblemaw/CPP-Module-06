@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:11:34 by maw               #+#    #+#             */
-/*   Updated: 2025/10/14 14:48:31 by masase           ###   ########.fr       */
+/*   Updated: 2025/10/16 13:58:59 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void identify(Base* p)
 		std::cout << "Type: C" << std::endl;
 		return ;
 	}
-	std::cout << "aucun type bitch" <<  std::endl;
 }
 
 void identify(Base& p)
