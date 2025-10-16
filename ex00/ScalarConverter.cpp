@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 22:03:19 by maw               #+#    #+#             */
-/*   Updated: 2025/10/14 14:42:55 by masase           ###   ########.fr       */
+/*   Updated: 2025/10/16 13:41:06 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void ScalarConverter::from_char_display(char *_char)
 	float f = static_cast<float>(*_char);
 	long i = static_cast< long int>(*_char);
 	std::cout <<  "char: ";	
-	if (isprint(*_char))
+	if (isprint(*_char) && i >= 0 && i <= 127)
 		std::cout << *_char << std::endl;
 	else
 		std::cout << "Non displayable" << std::endl;		
@@ -151,7 +151,7 @@ void ScalarConverter::from_double_display(double *_double)
 	float f = static_cast<float>(*_double);
 	long i = static_cast< long int>(*_double);
 	std::cout <<  "char: ";	
-	if (isprint(c))
+	if (isprint(c) && i >= 0 && i <= 127)
 		std::cout << c << std::endl;
 	else
 		std::cout << "Non displayable" << std::endl;		
@@ -178,7 +178,7 @@ void ScalarConverter::from_float_display(float *_float)
 	char c = static_cast<char>(*_float);
 	long i = static_cast< long int>(*_float);
 	std::cout <<  "char: ";	
-	if (isprint(c))
+	if (isprint(c) && i >= 0 && i <= 127)
 		std::cout << c << std::endl;
 	else
 		std::cout << "Non displayable" << std::endl;		
@@ -209,7 +209,7 @@ void ScalarConverter::from_int_display(long int *_int)
 	char c = static_cast<char>(*_int);
 	float f = static_cast<float>(*_int);
 	std::cout <<  "char: ";	
-	if (isprint(c))
+	if (isprint(c) && *_int >= 0 && *_int <= 127)
 		std::cout << c << std::endl;
 	else
 		std::cout << "Non displayable" << std::endl;		
@@ -261,9 +261,16 @@ void ScalarConverter::convert(char *literal)
 	double_check(literal, &_double, &valid_double);
 	int_check(literal, &_int, &valid_int);	
 	if (valid_char == VALID)
-		from_char_display(&_char);
-	else if (valid_int == VALID)		
+	{
+		std::cout << "char display" << std::endl;
+		from_char_display(&_char);		
+	}
+	else if (valid_int == VALID)
+	{
+		std::cout << "int display" << std::endl;		
 		from_int_display(&_int);
+	}		
+
 	else if (valid_float == VALID)		
 		from_float_display(&_float);		
 	else if (valid_double == VALID)	
